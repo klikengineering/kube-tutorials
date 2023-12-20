@@ -35,48 +35,44 @@ def generate_alarm_message(alarm, environment):
                 "text": {
                     "type": "plain_text",
                     "text": text,
-                }
+                },
             },
+            {"type": "divider"},
             {
-                "type": "divider"
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*" + alarm['summary'] + "*",
+                },
+                "block_id": "summary",
             },
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": "*" + alarm['summary'] + "*"
+                    "text": "_" + alarm['description'] + "_",
                 },
-                "block_id": "summary"
+                "block_id": "description",
             },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "_" + alarm['description'] + "_"
-                },
-                "block_id": "description"
-            },
-            {
-                "type": "divider"
-            },
+            {"type": "divider"},
             {
                 "type": "context",
                 "elements": [
                     {
                         "type": "mrkdwn",
-                        "text": "Instance: *" + alarm['instance'] + "*"
+                        "text": "Instance: *" + alarm['instance'] + "*",
                     },
                     {
                         "type": "mrkdwn",
-                        "text": "Severity: *" + alarm['severity'] + "*"
+                        "text": "Severity: *" + alarm['severity'] + "*",
                     },
                     {
                         "type": "mrkdwn",
-                        "text": "Environment: *" + environment + "*"
-                    }
-                ]
-            }
-        ]
+                        "text": f"Environment: *{environment}*",
+                    },
+                ],
+            },
+        ],
     }
 
 
