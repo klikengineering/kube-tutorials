@@ -44,18 +44,15 @@ tracer = trace.get_tracer("python-app")
 def s3Connect(config):
     """Initializes the S3 session."""
 
-    # Create S3 config.
-    s3 = boto3.client('s3',
-                      endpoint_url=config.s3_config.endpoint,
-                      aws_access_key_id=config.s3_config.user,
-                      aws_secret_access_key=config.s3_config.secret,
-                      aws_session_token=None,
-                      config=boto3.session.Config(
-                          signature_version='s3v4'),
-                      verify=False
-                      )
-
-    return s3
+    return boto3.client(
+        's3',
+        endpoint_url=config.s3_config.endpoint,
+        aws_access_key_id=config.s3_config.user,
+        aws_secret_access_key=config.s3_config.secret,
+        aws_session_token=None,
+        config=boto3.session.Config(signature_version='s3v4'),
+        verify=False,
+    )
 
 
 def dbConnect(config):
